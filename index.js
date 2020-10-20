@@ -32,6 +32,9 @@ function listofItems(list) {
 }
 
 //routes
+app.get('/edekmoving', async (req, res, next) => {
+  res.send('😗')
+})
 app.post('/edekmoving', async (req, res, next) => {
   try {
     const quote = await Quote.create(req.body);
