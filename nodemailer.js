@@ -10,9 +10,9 @@ const sendEmail = async (options) => {
       user: process.env.SENDER_EMAIL, // generated ethereal user
       pass: process.env.SENDER_PASSWORD, // generated ethereal password
     },
-    tls: {
-      rejectUnauthorized: false,
-    },
+    // tls: {
+    //   rejectUnauthorized: false,
+    // },
   });
 
   // send mail with defined transport object
@@ -23,10 +23,10 @@ const sendEmail = async (options) => {
     // text: options.message, // plain text body
     html: options.html,
   };
-  // console.log(message);
-  // const info = await transporter.sendMail(message);
+  console.log(message);
+  const info = await transporter.sendMail(message);
 
-  // console.log('Message sent: %s', info.messageId);
+  console.log('Message sent: %s', info.messageId);
 };
 
 module.exports  = sendEmail;

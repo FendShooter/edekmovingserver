@@ -10,7 +10,8 @@ const app = express();
 
 //middlewares
 
-app.use(cors({ origin: 'https://edekmoving.com' }));
+app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+// app.use(cors({ origin: 'https://edekmoving.com' }));
 app.use(helmet());
 app.use(express.json());
 
@@ -109,4 +110,4 @@ app.post('/edekmoving', async (req, res, next) => {
 });
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server running on localhost`));
+app.listen(PORT, () => console.log(`Server running on localhost ${PORT}`));
