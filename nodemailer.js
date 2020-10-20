@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-
+require('dotenv').config({path:'./config/config.env'})
 const sendEmail = async (options) => {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
@@ -10,9 +10,9 @@ const sendEmail = async (options) => {
       user: process.env.SENDER_EMAIL, // generated ethereal user
       pass: process.env.SENDER_PASSWORD, // generated ethereal password
     },
-    tls: {
-      rejectUnauthorized: false,
-    },
+    // tls: {
+    //   rejectUnauthorized: false,
+    // },
   });
 
   // send mail with defined transport object
