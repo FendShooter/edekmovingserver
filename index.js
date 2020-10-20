@@ -9,9 +9,7 @@ connect_DB();
 const app = express();
 
 //middlewares
-
-app.use(cors({ origin: 'http://127.0.0.1:5500' }));
-// app.use(cors({ origin: 'https://edekmoving.com' }));
+app.use(cors({ origin: 'https://edekmoving.com' }));
 app.use(helmet());
 app.use(express.json());
 
