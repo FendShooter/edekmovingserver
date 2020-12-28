@@ -11,7 +11,7 @@ const sendEmail = async (options) => {
       pass: process.env.SENDER_PASSWORD, // generated ethereal password
     },
     tls: {
-      rejectUnauthorized: true,
+      rejectUnauthorized: false,
     },
   });
 
