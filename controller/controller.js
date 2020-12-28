@@ -22,46 +22,46 @@ exports.postQuote = async (req, res, next) => {
 <div style="font-size: 17px">Contact: <span style="font-size: 20px; font-weight: bold">${
         quote.contact
       }</span> </div>
-<div  style="font-size: 17px">Address From: <span style="font-weight: normal; font-size: 17px">${
+<div  style="font-size: 17px">Address From: <span style="font-weight: bold; font-size: 20px">${
         quote.addressFrom
       }</span> zip code: <span style="font-size: 20px; font-weight: bold">${
         quote.zipCodeFrom
       }</span></div>
-<div style="font-size: 17px">House: <span  style="font-weight: normal; font-size: 17px">${check(
+<div style="font-size: 17px">House: <span  style="font-weight: bold; font-size: 20px">${check(
         quote.houseFrom
       )}</span> </div>
-<div style="font-size: 17px">Appartement: <span style="font-weight: normal; font-size: 17px">${check(
+<div style="font-size: 17px">Appartement: <span style="font-weight: bold; font-size: 20px">${check(
         quote.appartementFrom
-      )}</span> Elevator <span style="font-weight: normal; font-size: 17px">${check(
+      )}</span> Elevator <span style="font-weight: bold; font-size: 20px">${check(
         quote.elevatorFromYes
-      )}</span> <span style="font-weight: normal; font-size: 17px">${check(
+      )}</span> <span style="font-weight: bold; font-size: 20px">${check(
         quote.elevatorFromNo
-      )}</span>  Floor: <span style="font-weight: normal; font-size: 17px">${
+      )}</span>  Floor: <span style="font-weight: bold; font-size: 20px">${
         quote.fromFloor
       }</span>   </div>
-<div style="font-size: 17px">Date: <span style="font-weight: normal; font-size: 17px">${
+<div style="font-size: 17px">Date: <span style="font-weight: bold; font-size: 20px">${
         quote.calender
       }</span> </div>
       
 <h1 style="font-weight: bold;margin-bottom: 15px; font-size: 16px;">Destination location :</h1>
 <hr>
-<div style="font-size: 17px">Address From: <span style="font-weight: normal; font-size: 17px;">${
+<div style="font-size: 17px">Address From: <span style="font-weight: bold; font-size: 20px">${
         quote.addressTo
-      }</span> zip code: <span style="font-weight: normal; font-size: 17px">${
+      }</span> zip code: <span style="font-weight: bold; font-size: 20px">${
         quote.zipCodeTo
       }</span></div>
-<div style="font-size: 17px">House: <span style="font-weight: normal; font-size: 17px">${check(
+<div style="font-size: 17px">House: <span style="font-weight: bold; font-size: 20px">${check(
         quote.houseTo
       )}</span> </div>
-<div style="font-size: 17px">Appartement: <span style="font-weight: normal; font-size: 17px">${check(
+<div style="font-size: 17px">Appartement: <span style="font-weight: bold; font-size: 20px">${check(
         quote.appartementTo
       )}</span>
 
-      Elevator: <span style="font-weight: normal; font-size: 17px">${check(
+      Elevator: <span style="font-weight: bold; font-size: 20px">${check(
         quote.elevatorToYes
-      )}</span> <span style="font-weight: normal; font-size: 17px">${check(
+      )}</span> <span style="font-weight: bold; font-size: 20px">${check(
         quote.elevatorToNo
-      )}</span>  Floor: <span style="font-weight: normal; font-size: 17px">${
+      )}</span>  Floor: <span style="font-weight: bold; font-size: 20px">${
         quote.toFloor
       }</span>
       </div>
