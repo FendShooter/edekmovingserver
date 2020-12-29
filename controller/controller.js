@@ -89,8 +89,7 @@ exports.postQuote = async (req, res, next) => {
     `,
     };
 
-    sendEmail(options);
-    console.log(quote);
+    sendEmail(options).catch((err) => console.log(err));
     res.status(201).send({ success: true });
   } catch (error) {
     next(error);
