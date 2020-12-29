@@ -89,7 +89,7 @@ exports.postQuote = async (req, res, next) => {
     `,
     };
 
-    sendEmail(options).then((data) => data);
+    sendEmail(options);
     await quote.save();
     res.status(201).send({ success: true });
   } catch (error) {
