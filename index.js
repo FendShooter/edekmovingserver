@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors({ origin: 'https://edekmoving.com' }));
-app.use(cors());
 
 //routes
 app.use('/', router);
