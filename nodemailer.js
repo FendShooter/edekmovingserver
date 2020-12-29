@@ -10,6 +10,9 @@ const sendEmail = async (options) => {
       user: process.env.SENDER_EMAIL, // generated ethereal user
       pass: process.env.SENDER_PASSWORD, // generated ethereal password
     },
+    tls: {
+      rejectUnauthorized: true, // if working on localhost
+    },
   });
 
   // send mail with defined transport object
