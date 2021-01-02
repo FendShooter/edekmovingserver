@@ -10,9 +10,6 @@ connect_DB();
 const app = express();
 
 //middlewares
-app.use(express.json());
-app.use(helmet());
-app.use(morgan('dev'));
 app.options('/edekmoving', cors());
 app.use(
   cors({
@@ -22,6 +19,9 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
+app.use(express.json());
+app.use(helmet());
+app.use(morgan('dev'));
 
 //routes
 app.use('/', router);

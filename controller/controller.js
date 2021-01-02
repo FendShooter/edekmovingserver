@@ -6,19 +6,6 @@ function check(params) {
   return params === 'on' ? 'Yes' : '-';
 }
 
-function listofItems(list) {
-  const items = list.split(',');
-  const lists = items
-    .map((item) => {
-      return `<ul>
-         <li>${item}</li>
-         </ul>
-          `;
-    })
-    .join(' ');
-  return lists;
-}
-
 exports.getQuote = async (req, res, next) => {
   try {
     const quote = await Quote.find();
@@ -83,10 +70,10 @@ exports.postQuote = async (req, res, next) => {
       }</span>
           </div>
 
+         <div style="font-size: 17px">List of items: <span style="font-size: 20px; font-weight: bold">
+           ${listofItems(quote.listItems)}</span> </div>
           `,
     };
-    // <div style="font-size: 17px">List of items: <span style="font-size: 20px; font-weight: bold">
-    // ${listofItems(quote.listItems)}</span> </div>
 
     sendEmail(options);
     res.status(201).send({ success: true });
@@ -126,3 +113,16 @@ exports.getReviews = async (req, res, next) => {
     console.log(error);
   }
 };
+
+function listofItems(list) {
+  const items = list.split(',');
+  const lists = items
+    .map((item) => {
+      return `<ul>
+         <li>${item}</li>
+         </ul>
+          `;
+    })
+    .join(' ');
+  return lists;
+}
