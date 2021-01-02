@@ -16,7 +16,7 @@ exports.getQuote = async (req, res, next) => {
 };
 exports.postQuote = async (req, res, next) => {
   try {
-    const quote = await Quote.create(req.body);
+    const quote = await Quote(req.body);
     const options = {
       to: quote.email,
       from: quote.user,
@@ -76,6 +76,7 @@ exports.postQuote = async (req, res, next) => {
     };
 
     sendEmail(options);
+    await quote.save();
     res.status(201).send({ success: true });
   } catch (error) {
     console.log(error);
