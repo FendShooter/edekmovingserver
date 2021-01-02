@@ -70,10 +70,10 @@ exports.postQuote = async (req, res, next) => {
       }</span>
           </div>
 
-         <div style="font-size: 17px">List of items: <span style="font-size: 20px; font-weight: bold">
-           ${listofItems(quote.listItems)}</span> </div>
           `,
     };
+    // <div style="font-size: 17px">List of items: <span style="font-size: 20px; font-weight: bold">
+    //   ${listofItems(quote.listItems)}</span> </div>
 
     sendEmail(options);
     await quote.save();
