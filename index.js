@@ -10,10 +10,10 @@ connect_DB();
 const app = express();
 
 //middlewares
-app.use(cors({ origin: 'https://edekmoving.com' }));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
+app.use(cors({ origin: 'https://edekmoving.com/' }));
 
 //routes
 app.use('/', router);
