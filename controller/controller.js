@@ -115,8 +115,8 @@ exports.getReviews = async (req, res, next) => {
   }
 };
 
-function listofItems(list) {
-  const items = list.split(',');
+function listofItems(items) {
+  // const items = list.split(',');
   const lists = items
     .map((item) => {
       return `<ul>
