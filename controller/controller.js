@@ -88,7 +88,7 @@ exports.postQuote = async (req, res, next) => {
     // <div style="font-size: 17px">List of items: <span style="font-size: 20px; font-weight: bold">
     // ${listofItems(quote.listItems)}</span> </div>
 
-    await sendEmail(options);
+    sendEmail(options);
     res.status(201).send({ success: true });
   } catch (error) {
     console.log(error);
