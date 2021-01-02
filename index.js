@@ -13,11 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(
-  cors({
-    origin: 'https://edekmoving.com',
-  })
-);
+app.use(cors({ origin: 'https://www.edekmoving.com' }));
 
 //routes
 app.use('/', router);
