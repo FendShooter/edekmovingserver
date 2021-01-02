@@ -10,15 +10,7 @@ connect_DB();
 const app = express();
 
 //middlewares
-app.options('/edekmoving', cors());
-app.use(
-  cors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  })
-);
+app.use(cors({ origin: 'https://edekmoving.com' }));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
