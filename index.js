@@ -15,8 +15,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(
   cors({
-    origin: `
-jovial-panini-785d69.netlify.app`,
+    origin: 'https://edekmoving.com',
   })
 );
 
