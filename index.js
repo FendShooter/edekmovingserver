@@ -11,9 +11,17 @@ const app = express();
 
 //middlewares
 app.use(express.json());
-app.use(morgan('dev'));
-app.use(cors({ origin: 'https://edekmoving.com' }));
 app.use(helmet());
+app.use(morgan('dev'));
+app.options('/edekmoving', cors());
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 
 //routes
 app.use('/', router);
