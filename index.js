@@ -15,7 +15,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(
   cors({
-    origin: 'https://cors-anywhere.herokuapp.com/https://edekmoving.com',
+    origin: 'https://edekmoving.com',
   })
 );
 
