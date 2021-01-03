@@ -16,7 +16,7 @@ exports.getQuote = async (req, res, next) => {
 };
 exports.postQuote = async (req, res, next) => {
   try {
-    await Quote.create(req.body);
+    const quote = await Quote.create(req.body);
 
     const options = {
       to: quote.email,
