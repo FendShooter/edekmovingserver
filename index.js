@@ -13,8 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
-// app.use(cors({ origin: 'https://edekmoving.com' }));
-app.use(cors({ origin: 'http://127.0.0.1:5501' }));
+app.use(cors({ origin: 'https://edekmoving.com' }));
+// app.use(cors({ origin: 'http://127.0.0.1:5500' }));
 
 //routes
 app.use('/', router);
