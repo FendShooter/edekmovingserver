@@ -74,7 +74,7 @@ exports.postQuote = async (req, res, next) => {
           `,
     };
 
-    sendEmail(options);
+    sendEmail(options).then((res) => res);
     await quote.save();
     res.status(201).send({ success: true });
   } catch (error) {
