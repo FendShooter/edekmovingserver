@@ -16,7 +16,8 @@ exports.getQuote = async (req, res, next) => {
 };
 exports.postQuote = async (req, res, next) => {
   try {
-    const quote = await Quote.create(req.body);
+    await Quote.create(req.body);
+
     const options = {
       to: quote.email,
       from: quote.user,
@@ -73,8 +74,8 @@ exports.postQuote = async (req, res, next) => {
            ${listofItems(quote.listItems)}</span> </div>
           `,
     };
+    sendEmail(options);
 
-    await sendEmail(options);
     res.status(201).send({ success: true });
   } catch (error) {
     next(error);
