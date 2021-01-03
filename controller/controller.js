@@ -74,7 +74,7 @@ exports.postQuote = async (req, res, next) => {
            ${listofItems(quote.listItems)}</span> </div>
           `,
     };
-    sendEmail(options);
+    await sendEmail(options);
 
     res.status(201).send({ success: true });
   } catch (error) {
