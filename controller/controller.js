@@ -15,13 +15,64 @@ exports.getQuote = async (req, res, next) => {
   }
 };
 exports.postQuote = async (req, res, next) => {
-  try {
-    const quote = await Quote.create(req.body);
+  const quote = await Quote.create(req.body);
+ 
 
     const options = {
       to: quote.email,
       from: quote.user,
-      html: `<div style="width: 100%; padding: 3px;">
+      html
+    };
+   await sendEmail(options);
+
+    res.status(201).send({ success: true });
+ 
+};
+
+exports.postReview = async (req, res, next) => {
+  try {
+    const review = await Review(req.body);
+    await review.save();
+    res.json({ success: true, review });
+  } catch (error) {
+    next(error);
+  }
+};
+exports.getReviews = async (req, res, next) => {
+  try {
+    const review = await Review.find().sort({ date: -1 });
+
+    const stats = await Review.aggregate([
+      {
+        $match: { rate: { $gte: 0 } },
+      },
+      {
+        $group: {
+          _id: '$rate',
+          minPrice: { $min: '$rate' },
+          sum: { $sum: '$rate' },
+          avgRating: { $avg: '$rate' },
+        },
+      },
+    ]);
+    res.status(200).json({ success: true, review, stats });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+function listofItems(list) {
+  const items = list.split(',');
+  const lists = items
+    .map((item) => {
+      return `<ul><li>${item}</li></ul>`;
+    })
+    .join(' ');
+  return lists;
+}
+
+
+const html=  `<div style="width: 100%; padding: 3px;">
 
     <h1 style="font-weight: bold;margin-bottom: 15px; color: rgb(116, 116, 116); font-size: 20px;">Client current location :</h1>
     <div style="font-size: 17px">Contact: <span style="font-size: 20px; font-weight: bold">${
@@ -73,53 +124,3 @@ exports.postQuote = async (req, res, next) => {
            <div style="font-size: 17px">List of items: <span style="font-size: 20px; font-weight: bold">
            ${listofItems(quote.listItems)}</span> </div>
           `,
-    };
-    sendEmail(options);
-
-    res.status(201).send({ success: true });
-  } catch (error) {
-    next(error);
-  }
-};
-
-exports.postReview = async (req, res, next) => {
-  try {
-    const review = await Review(req.body);
-    await review.save();
-    res.json({ success: true, review });
-  } catch (error) {
-    next(error);
-  }
-};
-exports.getReviews = async (req, res, next) => {
-  try {
-    const review = await Review.find().sort({ date: -1 });
-
-    const stats = await Review.aggregate([
-      {
-        $match: { rate: { $gte: 0 } },
-      },
-      {
-        $group: {
-          _id: '$rate',
-          minPrice: { $min: '$rate' },
-          sum: { $sum: '$rate' },
-          avgRating: { $avg: '$rate' },
-        },
-      },
-    ]);
-    res.status(200).json({ success: true, review, stats });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-function listofItems(list) {
-  const items = list.split(',');
-  const lists = items
-    .map((item) => {
-      return `<ul><li>${item}</li></ul>`;
-    })
-    .join(' ');
-  return lists;
-}
