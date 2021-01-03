@@ -13,10 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(cors({ origin: 'https://edekmoving.com' }));
+// app.use(cors({ origin: 'https://edekmoving.com' }));
+app.use(cors({ origin: 'http://127.0.0.1:5501' }));
 
 //routes
 app.use('/', router);
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server running...`));
+app.listen(PORT, () => console.log(`Server running...${PORT}`));
