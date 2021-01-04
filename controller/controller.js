@@ -1,6 +1,13 @@
 const Quote = require('../models/Quote');
 const Review = require('../models/Review');
-const sendEmail = require('../nodemailer');
+const nodemailer = require('nodemailer');
+const nodemailerSendgrid = require('nodemailer-sendgrid');
+const transport = nodemailer.createTransport(
+  nodemailerSendgrid({
+    apiKey:
+      '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',
+  })
+);
 
 function check(params) {
   return params === 'on' ? 'Yes' : '-';
@@ -17,8 +24,9 @@ exports.getQuote = async (req, res, next) => {
 exports.postQuote = async (req, res, next) => {
   const quote = await Quote(req.body);
   const options = {
-    to: quote.email,
-    from: quote.user,
+    to: 'oldhumblelion@gmail.com',
+    from: 'edekmovingservices@gmail.com',
+    subject: 'hello world from me',
     html: `<div style="width: 100%; padding: 3px;">
 
     <h1 style="font-weight: bold;margin-bottom: 15px; color: rgb(116, 116, 116); font-size: 20px;">Client current location :</h1>
@@ -73,7 +81,9 @@ exports.postQuote = async (req, res, next) => {
           `,
   };
   await quote.save();
-  sendEmail(options);
+  transport.sendMail(options).then(() => {
+    console.log('sent');
+  });
 
   res.status(201).send({ success: true });
 };
