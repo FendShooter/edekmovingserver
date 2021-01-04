@@ -14,8 +14,6 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(cors({ origin: 'https://edekmoving.com' }));
-// app.use(cors({ origin: 'http://127.0.0.1:5500' }));
-
 //routes
 app.use('/', router);
 const PORT = process.env.PORT || 5000;

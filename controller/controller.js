@@ -49,13 +49,13 @@ exports.postQuote = async (req, res, next) => {
       quote.elevatorFromNo
     )}</span>  Floor: <span style="font-weight: bold; font-size: 20px">${
       quote.fromFloor
-    }</span>   </div>
-    <div style="font-size: 17px">Date: <span style="font-weight: bold; font-size: 20px">${
+    }<sup>th</sup> </span>   </div>
+    <div style="font-size: 17px">Date: <span style="font-weight: bold; font-size: 20px">${formatDate(
       quote.calender
-    }</span> </div>
+    )}</span> </div>
 
     <hr>
-    <h1 style="font-weight: bold;margin-bottom: 15px; font-size: 16px;">Destination location :</h1>
+    <h1 style="font-weight: bold;margin-bottom: 15px; color: rgb(116, 116, 116); font-size: 20px;">Destination location :</h1>
     <div style="font-size: 17px">Address From: <span style="font-weight: bold; font-size: 20px">${
       quote.addressTo
     }</span> zip code: <span style="font-weight: bold; font-size: 20px">${
@@ -82,7 +82,7 @@ exports.postQuote = async (req, res, next) => {
   };
   await quote.save();
   transport.sendMail(options).then(() => {
-    console.log('sent');
+    console.log('Email sent');
   });
 
   res.status(201).send({ success: true });
@@ -128,4 +128,9 @@ function listofItems(list) {
     })
     .join(' ');
   return lists;
+}
+
+function formatDate(date) {
+  let today = new Date(date);
+  return today.toUTCString();
 }
