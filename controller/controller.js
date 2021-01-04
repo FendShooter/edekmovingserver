@@ -2,10 +2,10 @@ const Quote = require('../models/Quote');
 const Review = require('../models/Review');
 const nodemailer = require('nodemailer');
 const nodemailerSendgrid = require('nodemailer-sendgrid');
+require('dotenv').config({ path: '../config/config.env' });
 const transport = nodemailer.createTransport(
   nodemailerSendgrid({
-    apiKey:
-      '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',
+    apiKey: process.env.SENDGRID_KEY,
   })
 );
 
@@ -24,9 +24,9 @@ exports.getQuote = async (req, res, next) => {
 exports.postQuote = async (req, res, next) => {
   const quote = await Quote(req.body);
   const options = {
-    to: 'oldhumblelion@gmail.com',
-    from: 'edekmovingservices@gmail.com',
-    subject: 'hello world from me',
+    to: process.env.RECEIVER_EMAIL,
+    from: process.env.SENDER_EMAIL,
+    subject: `${quote.contact}'s quote`,
     html: `<div style="width: 100%; padding: 3px;">
 
     <h1 style="font-weight: bold;margin-bottom: 15px; color: rgb(116, 116, 116); font-size: 20px;">Client current location :</h1>
