@@ -47,7 +47,7 @@ Floor: ${locTypeB?.floor}
 List: ${list} 
   `;
   await sendEmail({
-    to: 'oldhumblelion@gmail.com',
+    to: process.env.MAIL_RECEIVER,
     subject: 'New quote',
     message,
   }).catch((err) => {
