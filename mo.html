@@ -1,0 +1,207 @@
+const options = {
+    subject: `${quote.contact}'s quote`,
+    html: `<div
+      style="
+        box-sizing: border-box;
+        width: 100%;
+        padding: 5px;
+        max-width: 1400px;
+        background-color: #25669f;
+      "
+    >
+      <h2 style="color: white; font-size: 23px; text-align: center">
+        <a
+          href="https://edekmoving.com"
+          target="_blank"
+          style="color: white; text-decoration: none"
+        >
+          Edekmoving.com
+        </a>
+      </h2>
+    </div>
+    <table style="width: 100%; margin-top: 15px">
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          Contact
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+       ${contact}
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          Date
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+    ${formatDate(date)}
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          Address
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+          ${addressFrom}
+    ${zipCode}
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          House
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+  ${check(quote.houseFrom)}
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          Appartement
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+       ${check(quote.appartementFrom)} /
+       ${
+         check(quote.elevatorFromNo) === 'off'
+           ? 'no-elevator'
+           : quote?.fromFloor + 'floor'
+       }</span>
+    </td>
+      </tr>
+    </table>
+    <table style="width: 100%; margin-top: 15px">
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          Address
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+         ${quote.addressTo}
+    ${quote.zipCodeTo}
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          House
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+     ${check(quote.houseTo)}
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+          "
+        >
+          Appartement
+
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+        ${check(quote.appartementTo)}
+        ${
+          quote.appartementTo === 'off'
+            ? ''
+            : quote?.toFloor + ' floor / elvator ' + check(quote.elevatorToYes)
+        }
+
+        </td>
+      </tr>
+    </table>
+    <table style="width: 100%; margin-top: 15px">
+      <tr>
+        <td
+          style="
+            background-color: #d3e0ec;
+            font-weight: 400;
+            font-size: 18px;
+            padding: 10px;
+            width: 30%;
+            vertical-align: top;
+          "
+        >
+          Lists
+        </td>
+        <td
+          style="background-color: #f9f9f9;padding-left: 7px; font-size: 18px; font-weight: 600"
+        >
+        <ol>
+        ${listofItems(quote.listItems)}
+        </ol>
+        </td>
+      </tr>
+    </table>`,
+  };
