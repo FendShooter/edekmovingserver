@@ -54,7 +54,6 @@ List: ${list}
     console.log(err);
   });
   await quote.save();
-  // await sendEmail(options).catch((err) => console.log(err));
   res.status(201).json({ success: true, message });
 };
 

@@ -11,7 +11,7 @@ const sendEmail = async (options) => {
   const mailOptions = {
     from: process.env.SENDER,
     to: options.to,
-    suject: options.subject,
+    suject: 'New quote',
     text: options.message,
   };
 
