@@ -58,8 +58,9 @@ List: ${list}
 };
 
 exports.postReview = async (req, res, next) => {
+  // console.log(req.body);
   try {
-    const review = await Review(req.body);
+    const review = await new Review(req.body);
     await review.save();
     res.json({ success: true, review });
   } catch (error) {
@@ -69,10 +70,13 @@ exports.postReview = async (req, res, next) => {
 exports.getReviews = async (req, res, next) => {
   try {
     const review = await Review.find().sort({ date: -1 });
+    const total = review && review?.map((rate) => rate.rate);
+    const avg = total.reduce((acc, num) => acc + num, 0);
 
+    const initialRating = avg / review?.length;
     const stats = await Review.aggregate([
       {
-        $match: { rate: { $gte: 0 } },
+        $match: { rate: { $gt: 0 } },
       },
       {
         $group: {
@@ -83,7 +87,15 @@ exports.getReviews = async (req, res, next) => {
         },
       },
     ]);
-    res.status(200).json({ success: true, review, stats });
+    res
+      .status(200)
+      .json({
+        success: true,
+        review,
+        stats,
+        initialRating,
+        count: review.length,
+      });
   } catch (error) {
     console.log(error);
   }
