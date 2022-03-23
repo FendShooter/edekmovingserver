@@ -4,7 +4,7 @@ const reviewShema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   rate: Number,
-  comment: String,
+  review: String,
   date: {
     type: Date,
     default: Date.now,
