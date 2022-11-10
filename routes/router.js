@@ -7,8 +7,8 @@ const {
   postQuote,
 } = require('../controller/controller');
 
-router.post('/review', postReview);
-router.get('/review', getReviews);
+router.post('/customerReview', postReview);
+router.get('/customerReview', getReviews);
 
 router.get('/edekmoving', getQuote);
 router.post('/edekmoving', postQuote);
